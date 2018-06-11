@@ -132,12 +132,14 @@ func (s *SmartContract) createCar(APIstub shim.ChaincodeStubInterface, args []st
 	return shim.Success(nil)
 }
 
-func (s *SmartContract) queryAllCars(APIstub shim.ChaincodeStubInterface, arg string) sc.Response {
+func (s *SmartContract) queryAllCars(APIstub shim.ChaincodeStubInterface) sc.Response {
 
 	// startKey := "CAR0"
 	// endKey := "CAR999"
 
-	query := '{"selector":{"make": ' arg '}}'
+	query := `{"selector":{"make": "Toyota" }}`
+
+	// fmt.Println(query);
 
 	resultsIterator, err := APIstub.GetQueryResult(query)
 	if err != nil {
